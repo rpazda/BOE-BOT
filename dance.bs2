@@ -1,0 +1,128 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+		' Variable declarations.
+    pulseLeft       VAR Word
+    pulseRight      VAR Word
+    loopCount       VAR Byte
+    pulseCount      VAR Byte
+
+Main:
+    GOSUB Forward_Pulse
+    GOSUB Forward_Pulse
+    GOSUB Forward_Pulse
+
+    GOSUB Full_Spin_Right
+
+    GOSUB Back_Up
+
+    GOSUB Turn_Right
+
+    GOSUB Turn_Left
+    GOSUB Turn_Left
+
+    GOSUB Forward_Pulse
+    GOSUB Forward_Pulse
+    GOSUB Forward_Pulse
+
+    GOSUB Turn_Left
+
+    GOSUB Turn_Right
+    GOSUB Turn_Right
+
+    GOSUB Full_Spin_Left
+    GOSUB Full_Spin_Right
+
+    GOSUB Turn_Left
+    GOSUB Turn_Right
+
+    GOSUB	Quick_Turn_Left
+    GOSUB	Quick_Turn_Right
+    GOSUB	Quick_Turn_Left
+    GOSUB	Quick_Turn_Right
+
+    GOSUB Back_Up
+    GOSUB Turn_Left
+    GOSUB Turn_Left
+    GOSUB Back_Up
+    GOSUB Back_Up
+
+    GOSUB	Quick_Turn_Left
+    GOSUB	Quick_Turn_Right
+
+
+    FREQOUT 4, 1000, 38500
+    GOSUB Full_Spin_Left
+    FREQOUT 4, 1000, 38500
+
+    END
+
+
+
+'[Subroutines]'
+
+	Forward_Pulse:
+		FOR pulseCount = 0 TO 15
+		  PULSOUT 13, 850
+		  PULSOUT 12, 650
+		  PAUSE 20
+		NEXT
+	RETURN
+
+	Turn_Left:
+		FOR pulseCount = 0 TO 15
+			PULSOUT 13, 650
+			PULSOUT 12, 650
+			PAUSE 20
+		NEXT
+	RETURN
+
+	Turn_Right:
+		FOR pulseCount = 0 TO 15
+			PULSOUT 13, 850
+			PULSOUT 12, 850
+			PAUSE 20
+		NEXT
+	RETURN
+
+	Back_Up:
+		FOR PulseCount = 0 TO 30
+	  	PULSOUT 13, 650
+	  	PULSOUT 12, 850
+	  	PAUSE 20
+	 	NEXT
+	RETURN
+
+  Full_Spin_Right:
+    FOR PulseCount = 0 TO 70
+	  	PULSOUT 13, 850
+	  	PULSOUT 12, 850
+	  	PAUSE 20
+	 	NEXT
+  RETURN
+
+  Full_Spin_Left:
+    FOR PulseCount = 0 TO 70
+	  	PULSOUT 13, 650
+	  	PULSOUT 12, 650
+	  	PAUSE 20
+	 	NEXT
+  RETURN
+
+  Quick_Turn_Left:
+		FOR pulseCount = 0 TO 5
+			PULSOUT 13, 650
+			PULSOUT 12, 650
+			PAUSE 20
+		NEXT
+	RETURN
+
+  Quick_Turn_Right:
+		FOR pulseCount = 0 TO 15
+			PULSOUT 13, 850
+			PULSOUT 12, 850
+			PAUSE 20
+		NEXT
+	RETURN
+
+  END
